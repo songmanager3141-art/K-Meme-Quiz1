@@ -55,7 +55,7 @@
   Kakao.init('3a80c876ba9391adbfcdb6e866e174ba');  // 사용하려는 앱의 JavaScript 키 입력
    function shareMessage() {
     Kakao.Share.sendScrap({
-      requestUrl: '${URL}',  // 스크랩 할 URL 입력
+      requestUrl: location.origin,  // 스크랩 할 URL 입력
     });
   }
 </script>
