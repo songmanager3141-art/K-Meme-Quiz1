@@ -86,7 +86,7 @@
 <script>
   function shareMessage() {
     Kakao.Share.sendScrap({
-      requestUrl: '${URL}',  // 스크랩 할 URL 입력
+      requestUrl: location.origin,  // 스크랩 할 URL 입력
     });
   }
 </script>
