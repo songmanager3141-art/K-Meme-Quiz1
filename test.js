@@ -1,14 +1,14 @@
 const testList = [
-  { answer: "무야호", imageUrl: "assets/test1.jpeg" },
-  { answer: "아모르파티", imageUrl: "assets/test2.jpeg" },
-  { answer: "던질까말까", imageUrl: "assets/test3.jpeg" },
-  { answer: "깡", imageUrl: "assets/test4.jpeg" },
-  { answer: "4달라", imageUrl: "assets/test5.jpeg" },
-  { answer: "호롤롤로", imageUrl: "assets/test6.jpeg" },
-  { answer: "아안돼", imageUrl: "assets/test7.jpeg" },
-  { answer: "ppap", imageUrl: "assets/test8.jpeg" },
-  { answer: "마포대교는무너졌냐", imageUrl: "assets/test9.jpeg" },
-  { answer: "이제는더이상물러날곳이없다", imageUrl: "assets/test10.jpeg" }
+  { answer: "무야호", imageUrl: "test1.jpeg" },
+  { answer: "아모르파티", imageUrl: "test2.jpeg" },
+  { answer: "던질까말까", imageUrl: "test3.jpeg" },
+  { answer: "깡", imageUrl: "test4.jpeg" },
+  { answer: "4달라", imageUrl: "test5.jpeg" },
+  { answer: "호롤롤로", imageUrl: "test6.jpeg" },
+  { answer: "아안돼", imageUrl: "test7.jpeg" },
+  { answer: "ppap", imageUrl: "test8.jpeg" },
+  { answer: "마포대교는무너졌냐", imageUrl: "test9.jpeg" },
+  { answer: "이제는더이상물러날곳이없다", imageUrl: "test10.jpeg" }
 ];
 
 let currentIndex = 0;
