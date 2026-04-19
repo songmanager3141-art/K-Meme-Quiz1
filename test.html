@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>K-밈 테스트 | 한국 밈 퀴즈로 당신의 밈력을 확인해보세요</title>
+  <meta name="description" content="무야호, 4달라, 깡… 당신은 몇 개나 맞힐 수 있을까? 한국 밈 퀴즈 테스트로 밈 이해도를 확인해보세요.">
+  <meta name="keywords" content="한국 밈 테스트, 밈 퀴즈, 무야호, 4달라, 밈 게임">
+
+  <!-- OG (카톡 공유용) -->
+  <meta property="og:title" content="K-밈 테스트">
+  <meta property="og:description" content="한국 밈 퀴즈로 당신의 밈력을 테스트해보세요!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="assets/thumbnail.jpeg">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "name": "K-밈 테스트",
+    "description": "한국 밈 퀴즈로 밈 이해도를 테스트하는 웹 서비스"
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "K-밈 테스트",
+  "url": "https://your-domain.com",
+  "description": "한국 밈 퀴즈를 통해 당신의 밈 이해도를 테스트해보세요."
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "K-밈 테스트",
+  "description": "무야호, 4달라, 깡 등 한국 밈을 맞추는 퀴즈",
+  "inLanguage": "ko",
+  "creator": {
+    "@type": "Person",
+    "name": "송매니저"
+  }
+}
+</script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" integrity="sha384-OL+ylM/iuPLtW5U3XcvLSGhE8JzReKDank5InqlHGWPhb4140/yrBw0bg0y7+C9J" crossorigin="anonymous"></script>
+<script>
+  Kakao.init('3a80c876ba9391adbfcdb6e866e174ba');  // 사용하려는 앱의 JavaScript 키 입력
+   function shareMessage() {
+    Kakao.Share.sendScrap({
+      requestUrl: '${URL}',  // 스크랩 할 URL 입력
+    });
+  }
+</script>
+<script>
+  function shareMessage() {
+    Kakao.Share.sendScrap({
+      requestUrl: '${URL}',  // 스크랩 할 URL 입력
+    });
+  }
+</script>
+
+</head>
+
+<body class="bg-light">
+
+  <div class="container d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+    
+    <h1 class="fw-bold display-3 mb-4">K-밈 테스트</h1>
+
+    <p class="text-muted mb-5">
+      만도사람들은 무야호, 깡, 4달라… 당신은 몇 개나 맞힐 수 있을까요?
+    </p>
+
+    <a href="test.html" class="btn btn-primary btn-lg px-5 py-3 shadow">
+      시작하기
+    </a>
+
+  </div>
+  <button class="btn 
+  btn-secondary" onclick="shareMessage()">공유하기</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
