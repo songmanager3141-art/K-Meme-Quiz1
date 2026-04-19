@@ -1,141 +1,93 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+const testList = [
+  { answer: "무야호", imageUrl: "assets/test1.jpeg" },
+  { answer: "아모르파티", imageUrl: "assets/test2.jpeg" },
+  { answer: "던질까말까", imageUrl: "assets/test3.jpeg" },
+  { answer: "깡", imageUrl: "assets/test4.jpeg" },
+  { answer: "4달라", imageUrl: "assets/test5.jpeg" },
+  { answer: "호롤롤로", imageUrl: "assets/test6.jpeg" },
+  { answer: "아안돼", imageUrl: "assets/test7.jpeg" },
+  { answer: "ppap", imageUrl: "assets/test8.jpeg" },
+  { answer: "마포대교는무너졌냐", imageUrl: "assets/test9.jpeg" },
+  { answer: "이제는더이상물러날곳이없다", imageUrl: "assets/test10.jpeg" }
+];
 
-  <title>K-밈 테스트 진행 | 한국 밈 퀴즈</title>
-  <meta name="description" content="한국 밈 퀴즈 테스트 진행 페이지입니다. 당신의 밈 이해도를 확인해보세요.">
+let currentIndex = 0;
+let userAnswers = [];
 
-  <!-- OG -->
-  <meta property="og:title" content="K-밈 테스트 진행">
-  <meta property="og:description" content="밈 퀴즈 풀고 결과 확인하기">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/thumbnail.jpeg">
+const questionNumber = document.getElementById("questionNumber");
+const questionImage = document.getElementById("questionImage");
+const answerInput = document.getElementById("answerInput");
+const submitBtn = document.getElementById("submitBtn");
+const resultArea = document.getElementById("resultArea");
+const quizCard = document.getElementById("quizCard");
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "K-밈 퀴즈 문제 리스트",
-  "description": "한국 밈 이미지 퀴즈 문제 목록",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "무야호"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "아모르파티"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "던질까말까"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "깡"
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "name": "4달라"
-    },
-    {
-      "@type": "ListItem",
-      "position": 6,
-      "name": "호롤롤로"
-    },
-    {
-      "@type": "ListItem",
-      "position": 7,
-      "name": "아안돼"
-    },
-    {
-      "@type": "ListItem",
-      "position": 8,
-      "name": "ppap"
-    },
-    {
-      "@type": "ListItem",
-      "position": 9,
-      "name": "마포대교는무너졌냐"
-    },
-    {
-      "@type": "ListItem",
-      "position": 10,
-      "name": "이제는더이상물러날곳이없다"
-    }
-  ]
+// 문제 로드
+function loadQuestion() {
+  const current = testList[currentIndex];
+
+  questionNumber.textContent = `문제 ${currentIndex + 1}`;
+  questionImage.src = current.imageUrl;
+  questionImage.loading = "lazy"; // SEO + 성능
+  answerInput.value = "";
 }
-</script>
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" integrity="sha384-OL+ylM/iuPLtW5U3XcvLSGhE8JzReKDank5InqlHGWPhb4140/yrBw0bg0y7+C9J" crossorigin="anonymous"></script>
-<script>
-  Kakao.init('3a80c876ba9391adbfcdb6e866e174ba');  // 사용하려는 앱의 JavaScript 키 입력
-   function shareMessage() {
-    Kakao.Share.sendScrap({
-      requestUrl: '${URL}',  // 스크랩 할 URL 입력
-    });
+
+// Enter 제출
+answerInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") submitBtn.click();
+});
+
+// 제출
+submitBtn.addEventListener("click", () => {
+  const userAnswer = answerInput.value.trim();
+  if (!userAnswer) return;
+
+  userAnswers.push(userAnswer);
+  currentIndex++;
+
+  if (currentIndex < testList.length) {
+    loadQuestion();
+  } else {
+    showResult();
   }
-</script>
-<script>
-  function shareMessage() {
-    Kakao.Share.sendScrap({
-      requestUrl: '${URL}',  // 스크랩 할 URL 입력
-    });
-  }
-</script>
+});
 
-</head>
+// 결과
+function showResult() {
+  quizCard.classList.add("d-none");
+  resultArea.classList.remove("d-none");
 
-<body class="bg-light">
+  let correctCount = 0;
+  let html = `<h2 class="text-center mb-4">결과</h2>`;
 
-  <main class="container py-5">
+  testList.forEach((item, i) => {
+    const user = userAnswers[i].replace(/\s/g, "").toLowerCase();
+    const correct = item.answer.replace(/\s/g, "").toLowerCase();
+    const isCorrect = user === correct;
 
-    <header class="text-center mb-5">
-      <h1 class="fw-bold display-5">K-밈 테스트</h1>
-    </header>
+    if (isCorrect) correctCount++;
 
-    <section class="card shadow-sm p-4 mx-auto" style="max-width: 600px;" id="quizCard">
-      
-      <h2 id="questionNumber" class="h5 fw-bold mb-3 text-center">문제 1</h2>
+    html += `
+      <article class="card mb-3 p-3">
+        <h3 class="h6">문제 ${i + 1}</h3>
+        <p>정답: ${item.answer}</p>
+        <p>내 답: ${userAnswers[i]}</p>
+        <p class="${isCorrect ? "text-success" : "text-danger"}">
+          ${isCorrect ? "정답" : "오답"}
+        </p>
+      </article>
+    `;
+  });
 
-      <p class="text-muted text-center">
-        다음 사진을 보고 떠오르는 밈 대사를 적어주세요.<br>
-        (띄어쓰기 없이, 영어는 소문자)
-      </p>
+  html = `
+    <h2 class="text-center mb-4">
+      최종 점수: ${correctCount} / ${testList.length}
+    </h2>
+  ` + html;
 
-      <div class="text-center mb-4">
-        <img id="questionImage" src="" class="img-fluid rounded" alt="한국 밈 퀴즈 문제 이미지">
-      </div>
+  resultArea.innerHTML = html;
 
-      <label for="answerInput" class="visually-hidden">정답 입력</label>
-      <input 
-        id="answerInput"
-        type="text" 
-        class="form-control mb-3" 
-        placeholder="정답을 입력하세요">
+  // 체류시간 증가 유도 (SEO 중요)
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-      <button id="submitBtn" class="btn btn-primary w-100">
-        제출하기
-      </button>
-
-    </section>
-
-    <section id="resultArea" class="mt-5 d-none"></section>
-
-  </main>
-
-  <script src="test.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-<button class="btn 
-  btn-secondary" onclick="shareMessage()">공유하기</button>
-
-</body>
-</html>
+loadQuestion();
